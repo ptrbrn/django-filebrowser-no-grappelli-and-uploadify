@@ -19,6 +19,13 @@ var FileBrowser = {
     },
     // show FileBrowser
     show: function(id, href, close_func) {
+		var idIsAnHtmlElement = id.nodeType && id.nodeType == 1;
+		if(idIsAnHtmlElement) {
+			var parent = id.parentNode.parentNode;
+			var inputElement = parent.getElementsByTagName('input')[0];
+			id = inputElement.id;
+		}
+		
         // var id2=String(id).split(".").join("___");
         var id2=String(id).replace(/\-/g,"____").split(".").join("___");
         FBWindow = window.open(href, String(id2), 'height=600,width=960,resizable=yes,scrollbars=yes');
